@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--<pattern>%date{ISO8601} %-5level %logger{26} %X{sourceActorSystem} - %msg%n</pattern>-->
+            <pattern>%date{ISO8601} %-5level %logger{26} %X{akkaSource} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/react-frame.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%-4relative [%thread][%date{HH:mm:ss.SSS}] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="com.cffex" level="DEBUG" />
+    <logger name="org.springframework" level="INFO" />
+    <logger name="org.apache" level="ERROR" />
+    <logger name="org.hibernate.SQL" level="DEBUG" />
+
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE" />
+        <!--<appender-ref ref="ROLLING_FILE" />-->
+    </root>
+
+</configuration>
